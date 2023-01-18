@@ -1,0 +1,7 @@
+{
+  "name": "se-project",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
