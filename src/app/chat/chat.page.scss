@@ -1,0 +1,25 @@
+ion-footer{
+  display: flex;background: #fff;align-items: center;padding: 10px;
+  ion-input{
+    border: 1px solid #a1accc;border-radius: 62px;color: #000;
+  }
+  ion-icon{
+    margin-left: 15px;color: #a1accc;font-size: 1.6rem;cursor: pointer;
+  }
+}
+
+ion-list{
+  padding: 0 15px;
+  .message{
+    display: flex;align-items: center;justify-content: flex-end;margin: 10px 0;
+    ion-avatar{
+      order: 1;margin-left: 8px;
+    }
+    &.other{
+      justify-content: flex-start;
+      ion-avatar{
+        order: 0;margin-right: 8px;margin-left: 0;
+      }
+    }
+  }
+}

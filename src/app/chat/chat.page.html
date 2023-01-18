@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar *ngIf="otherUser">
+    <ion-icon
+      (click)="goBack()"
+      name="arrow-back-outline"
+      slot="start"
+    ></ion-icon>
+    <ion-avatar slot="start">
+      <img
+        *ngIf="otherUser!.photoURL"
+        [src]="otherUser!.photoURL"
+        referrerpolicy="no-referrer"
+      />
+      <img *ngIf="!otherUser!.photoURL" [src]="util.dummyPhotoUrl" />
+    </ion-avatar>
+    <ion-title>
+      <p>{{otherUser.displayName}}</p>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [scrollEvents]="true" >
+  <ion-list>
+    <div
+      class="message"
+      *ngFor="let message of messages"
+      [ngClass]="message.userId == otherUser!.uid? 'other':''"
+    >
+      <ion-avatar *ngIf="message.userId == otherUser!.uid">
+        <img
+          *ngIf="otherUser!.photoURL"
+          [src]="otherUser!.photoURL"
+          referrerpolicy="no-referrer"
+        />
+        <img *ngIf="!otherUser!.photoURL" [src]="util.dummyPhotoUrl" />
+      </ion-avatar>
+      <ion-avatar *ngIf="message.userId != otherUser!.uid">
+        <img
+          *ngIf="currentUser!.photoURL"
+          [src]="currentUser!.photoURL"
+          referrerpolicy="no-referrer"
+        />
+        <img *ngIf="!currentUser!.photoURL" [src]="util.dummyPhotoUrl" />
+      </ion-avatar>
+      <p>{{message.text}}</p>
+    </div>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-input
+    placeholder="Enter Message"
+    name="msg"
+    (keyup.enter)="sendMessage()"
+    #msg="ngModel"
+    [(ngModel)]="messageText"
+  ></ion-input>
+  <ion-icon (click)="sendMessage()" name="send-outline"></ion-icon>
+</ion-footer>

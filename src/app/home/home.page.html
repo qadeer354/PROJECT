@@ -1,0 +1,26 @@
+<ion-header *ngIf="currentUser" >
+  <ion-toolbar >
+    <ion-avatar slot="start" >
+      <img *ngIf="currentUser!.photoURL" [src]="currentUser!.photoURL" referrerpolicy="no-referrer" />
+      <img *ngIf="!currentUser!.photoURL" [src]="util.dummyPhotoUrl" />
+    </ion-avatar>
+    <ion-title>Welcome {{currentUser!.displayName}}</ion-title>
+    <ion-icon (click)="logout()" slot="end" name="power-outline"></ion-icon>  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Users</ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let user of users" (click)="goToChatScreen(user)" detail="true">
+      <ion-avatar>
+        <img referrerpolicy="no-referrer" *ngIf="user.photoURL" [src]="user.photoURL" />
+        <img *ngIf="!user.photoURL" [src]="util.dummyPhotoUrl" />
+      </ion-avatar>
+      <ion-label>
+        <h3>{{user.displayName}}</h3>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
